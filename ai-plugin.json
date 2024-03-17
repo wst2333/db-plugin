@@ -9,7 +9,7 @@
     },
     "api": {
         "type": "openapi",
-        "url": "获取openapi.yaml文件的地址，请自行替换"
+        "url": "https://github.com/wst2333/db-plugin/blob/main/openapi.yaml"
     },
     "logo_url": "获取logo图片的地址，请自行替换",
     "contact_email": "wst7071002@163.com",
