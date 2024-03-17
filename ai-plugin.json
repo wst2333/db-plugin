@@ -1,0 +1,20 @@
+{
+    "schema_version": "v1",
+    "name_for_human": "护肤品日历",
+    "name_for_model": "skincare_calendar_1",
+    "description_for_human": "方便实用的工具，帮助您管理护肤品的生产、开封和截止日期。记录每个护肤品的相关信息，并设置提醒功能，确保您及时使用完或更换护肤品。",
+    "description_for_model": "帮助用户管理护肤品日历，记录护肤品的生产、开封和截止日期，并设置提醒功能。界面简洁易用，可根据个人喜好进行自定义设置，适应不同的护肤品管理需求。",
+    "auth": {
+        "type": "service_http"
+    },
+    "api": {
+        "type": "openapi",
+        "url": "获取openapi.yaml文件的地址，请自行替换"
+    },
+    "logo_url": "获取logo图片的地址，请自行替换",
+    "contact_email": "wst7071002@163.com",
+    "legal_info_url": "http://www.example.com/legal",
+    "examples": {
+        "url": "获取example.yaml文件的地址，请自行替换"
+    }
+}

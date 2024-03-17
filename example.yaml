@@ -1,0 +1,76 @@
+version: 0.0.1
+examples:
+  - context: # 对话历史
+      - role: user
+        content: 请帮我添加一个护肤品，名称是雅漾喷雾，生成日期是2024-03-17，开封日期是2024-03-18，截止日期是2024-06-17
+      - role: bot
+        # 触发插件
+        plugin:
+          # 应当触发的接口operationId
+          operationId: addProduct
+          # 思考过程，对触发有帮助
+          thoughts: 这是一个添加护肤品到日历的需求
+          requestArguments:
+            product_name: "雅漾喷雾"
+            manufacturing_date: "2024-03-17"
+            opening_date: "2024-03-18"
+            expiration_date: "2024-06-17"
+            query: 请帮我添加一个护肤品，名称是雅漾喷雾，生成日期是2024-03-17，开封日期是2024-03-18，截止日期是2024-06-17
+      - role: user
+        content: 显示我的护肤品列表
+      - role: bot
+        # 触发插件
+        plugin:
+          # 应当触发的接口operationId
+          operationId: getProductList
+          # 思考过程，对触发有帮助
+          thoughts: 这是一个展示护肤品日历的需求
+          requestArguments:
+            query: 显示我的护肤品列表
+      - role: user
+        content: 请帮我添加一个护肤品，名称是兰蔻面霜，生成日期是2024-01-05，开封日期是2024-01-06，截止日期是2024-04-05
+      - role: bot
+        # 触发插件
+        plugin:
+          # 应当触发的接口operationId
+          operationId: addProduct
+          # 思考过程，对触发有帮助
+          thoughts: 这是一个添加护肤品到日历的需求
+          requestArguments:
+            product_name: "兰蔻面霜"
+            manufacturing_date: "2024-01-05"
+            opening_date: "2024-01-06"
+            expiration_date: "2024-04-05"
+            query: 请帮我添加一个护肤品，名称是兰蔻面霜，生成日期是2024-01-05，开封日期是2024-01-06，截止日期是2024-04-05
+      - role: user
+        content: 我要使用两个护肤品
+      - role: bot
+        # 触发插件
+        plugin:
+          # 应当触发的接口operationId
+          operationId: useProducts
+          # 思考过程，对触发有帮助
+          thoughts: 这是一个使用护肤品的需求
+          requestArguments:
+            product_number: 2
+            query: 我要使用两个护肤品
+      - role: user
+        content: 删除护肤品雅漾喷雾
+      - role: bot
+        # 触发插件
+        plugin:
+          # 应当触发的接口operationId
+          operationId: deleteProduct
+          # 思考过程，对触发有帮助
+          thoughts: 这是一个从护肤品日历中删除护肤品的需求
+          requestArguments:
+            product_name: "雅漾喷雾"
+            query: 删除护肤品雅漾喷雾
+  # 反例，无需触发此插件的任一某个接口
+  - context:
+      - role: user
+        content: 护肤品保质期多久？
+      - role: bot
+        # 无需触发
+        plugin:
+          thoughts: 我不需要使用以上工具

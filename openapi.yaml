@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: 护肤品日历
+  description: 方便实用的工具，帮助您管理护肤品的生产、开封和截止日期。记录每个护肤品的相关信息，并设置提醒功能，确保您及时使用完或更换护肤品。
+  version: "v1"
+servers:
+  - url: http://127.0.0.1:8081
+paths:
+  /get_product_list:
+    get:
+      operationId: getProductList
+      summary: 展示护肤品列表
+      responses:
+        "200":
+          description: 列表展示完成
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ProductListResponse"
+  /add_product:
+    post:
+      operationId: addProduct
+      summary: 在护肤品日历中添加一个护肤品
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddProductRequest"
+      responses:
+        "200":
+          description: 护肤品添加成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+  /delete_product:
+    delete:
+      operationId: deleteProduct
+      summary: 从护肤品日历中删除一个护肤品
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DeleteProductRequest"
+      responses:
+        "200":
+          description: 护肤品删除成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+  /use_products:
+    post:
+      operationId: useProducts
+      summary: 使用护肤品
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UseProductsRequest"
+      responses:
+        "200":
+          description: 护肤品使用成功
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MessageResponse"
+
+components:
+  schemas:
+    ProductListResponse:
+      type: object
+      required: [product_list]
+      properties:
+        product_list:
+          type: array
+          items:
+            $ref: "#/components/schemas/Product"
+      description: 护肤品列表响应
+    Product:
+      type: object
+      properties:
+        name:
+          type: string
+          description: 护肤品名称
+        manufacturing_date:
+          type: string
+          format: date
+          description: 护肤品生产日期
+        opening_date:
+          type: string
+          format: date
+          description: 护肤品开封日期
+        expiration_date:
+          type: string
+          format: date
+          description: 护肤品截止日期
+      description: 单个护肤品信息
+    AddProductRequest:
+      type: object
+      required: [name, manufacturing_date, opening_date, expiration_date]
+      properties:
+        name:
+          type: string
+          description: 护肤品名称
+        manufacturing_date:
+          type: string
+          format: date
+          description: 护肤品生产日期
+        opening_date:
+          type: string
+          format: date
+          description: 护肤品开封日期
+        expiration_date:
+          type: string
+          format: date
+          description: 护肤品截止日期
+      description: 添加护肤品请求
+    DeleteProductRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: 需要删除的护肤品名称
+      description: 删除护肤品请求
+    UseProductsRequest:
+      type: object
+      required: [product_number]
+      properties:
+        product_number:
+          type: integer
+          description: 需要使用的护肤品数量
+      description: 使用护肤品请求
+    MessageResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+          description: 响应信息
+      description: 响应消息
