@@ -15,6 +15,6 @@
     "contact_email": "wst7071002@163.com",
     "legal_info_url": "http://www.example.com/legal",
     "examples": {
-        "url": "获取example.yaml文件的地址，请自行替换"
+        "url": "https://github.com/wst2333/db-plugin/blob/main/example.yaml"
     }
 }
